@@ -1,0 +1,288 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:m2m_coin/components/ingredient_progress.dart';
+import 'package:m2m_coin/detailStore/components/row_data_info.dart';
+
+import '../constants.dart';
+
+class DetailStoreScree extends StatefulWidget {
+  @override
+  _DetailStoreScreeState createState() => _DetailStoreScreeState();
+}
+
+class _DetailStoreScreeState extends State<DetailStoreScree> {
+  @override
+  Widget build(BuildContext context) {
+    String idSite = ModalRoute.of(context).settings.arguments;
+
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          color: cGradientColor1,
+          image: DecorationImage(
+            image: AssetImage("assets/images/ux_coin.png"),
+            alignment: Alignment.topRight,
+          ),
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  left: kDefaultPadding,
+                  top: kDefaultPadding * 2.5,
+                  right: kDefaultPadding * 10,
+                  bottom: kDefaultPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.keyboard_arrow_left,
+                          color: Colors.white,
+                        ),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: kDefaultPadding),
+                  Container(
+                    padding: EdgeInsets.only(
+                      left: kDefaultPadding,
+                      top: kDefaultPadding / 3,
+                      right: kDefaultPadding,
+                      bottom: kDefaultPadding / 3,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: kLabelCoinColor,
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(0, 4),
+                          blurRadius: 30,
+                          color: kLabelCoinColor.withOpacity(0.23),
+                        ),
+                      ],
+                    ),
+                    child: Text(
+                      "5,000,000 ฿",
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ),
+                  SizedBox(height: kDefaultPadding),
+                  Text(
+                    "Otteri Wash And Dry",
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: kDefaultPadding / 2),
+                  RowDataInfo(
+                    iconOfText: Icon(
+                      Icons.store_mall_directory,
+                      size: 16,
+                      color: Colors.white,
+                    ),
+                    dataText:
+                        "123 456 ตำบลหนองขาม อำเภอศรีราชา จังหวัดชลบุรี 20110",
+                  ),
+                  SizedBox(height: kDefaultPadding / 1.5),
+                  RowDataInfo(
+                    iconOfText: Icon(
+                      Icons.call,
+                      size: 16,
+                      color: Colors.white,
+                    ),
+                    dataText: "+66945576306",
+                  ),
+                  SizedBox(height: kDefaultPadding / 1.5),
+                  RowDataInfo(
+                    iconOfText: Icon(
+                      Icons.question_answer,
+                      size: 16,
+                      color: Colors.white,
+                    ),
+                    dataText: "https://www.facebook.com/otterisahaphat/",
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(top: 70),
+                decoration: BoxDecoration(
+                  color: kBackgroundColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: kDefaultPadding,
+                        top: kDefaultPadding,
+                        right: kDefaultPadding,
+                      ),
+                      child: Text(
+                        "Machine in Store",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (context, index) {
+                          return listMachineInStore();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget listMachineInStore() {
+    Size size = MediaQuery.of(context).size;
+    double sizecircle = size.height * 0.03;
+
+    return Slidable(
+      actionPane: SlidableDrawerActionPane(),
+      secondaryActions: [
+        Container(
+          margin: EdgeInsets.symmetric(
+            vertical: kDefaultPadding / 2,
+          ),
+          decoration: BoxDecoration(
+            color: cGradientColor1,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(22),
+              bottomLeft: Radius.circular(22),
+            ),
+            boxShadow: [kDefaultShadow],
+          ),
+          child: IconSlideAction(
+            iconWidget: SvgPicture.asset("assets/icons/broom.svg"),
+            caption: "Clear Coin",
+            color: transparent,
+            onTap: () {
+              print("+++++++ Click event on Slidable");
+            },
+          ),
+        ),
+      ],
+      child: GestureDetector(
+        onTap: () {
+          print(">>>>>>>>>Click event on Container");
+        },
+        child: Container(
+          margin: EdgeInsets.symmetric(
+            horizontal: kDefaultPadding,
+            vertical: kDefaultPadding / 2,
+          ),
+          height: 120,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  color: cGradientColor1,
+                ),
+                child: Container(
+                  margin: EdgeInsets.only(right: 10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(22),
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(sizecircle * 0.15),
+                            height: sizecircle,
+                            width: sizecircle,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: kRecovercolor.withOpacity(.22),
+                            ),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: kRecovercolor,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "S0012",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline5
+                                      .copyWith(
+                                          color: kTitleTextColor,
+                                          fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(
+                                  text: "    500 ฿\n",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      .copyWith(color: kTitleTextColor),
+                                ),
+                                TextSpan(
+                                  text: "20/12/2021",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle2
+                                      .copyWith(color: kTextLightColor),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      IngredientProgress(
+                        ingredient: "Coin in machine",
+                        progress: 0.5,
+                        leftAmount: 252,
+                        unit: "coin",
+                        width: size.width * 0.7,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
