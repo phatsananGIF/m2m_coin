@@ -39,7 +39,7 @@ class TitleWithSeeBtn extends StatelessWidget {
           FlatButton(
             onPressed: press,
             child: Text(
-              "See details",
+              "See all machine",
               style: TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.w600,

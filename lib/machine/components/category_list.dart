@@ -19,16 +19,21 @@ class _CategorylistState extends State<Categorylist> {
     "Online",
     "Off online"
   ];
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+      margin: EdgeInsets.symmetric(
+        vertical: kDefaultPadding / 2,
+        horizontal: kDefaultPadding * 1.2,
+      ),
       height: 30,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
+            print("_______onTap categories $index __________");
             setState(() {
               selectedIndex = index;
             });
@@ -36,10 +41,10 @@ class _CategorylistState extends State<Categorylist> {
           child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.only(
-              left: kDefaultPadding,
-              right: index == categories.length - 1 ? kDefaultPadding : 0,
+              left: kDefaultPadding / 2,
+              right: index == categories.length - 1 ? kDefaultPadding / 2 : 0,
             ),
-            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+            padding: EdgeInsets.symmetric(horizontal: kDefaultPadding * 0.8),
             decoration: BoxDecoration(
               color: index == selectedIndex
                   ? Colors.white.withOpacity(0.4)

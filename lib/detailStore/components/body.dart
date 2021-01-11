@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:m2m_coin/components/ingredient_progress.dart';
 import 'package:m2m_coin/detailStore/components/row_data_info.dart';
+import 'package:m2m_coin/services/ClearCoinService.dart';
 import 'package:m2m_coin/services/DetailStoreService.dart';
 
 import '../../constants.dart';
@@ -59,14 +60,14 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    print("........เริ่ม DetailStoreScree .........");
+    print("........เริ่ม DetailStoreScree .......");
     print("valueIDSite : ${widget.valueIDSite}");
 
     return FutureBuilder(
       future: getPostsFuture(),
       builder: (context, snapshot) {
         print(
-            "........เริ่ม Store Builder  body DetailStoreScree page.........");
+            "........เริ่ม Store Builder  body DetailStoreScree page........");
 
         if (snapshot.hasData) {
           print("-----------> : ${snapshot.data}");
@@ -183,7 +184,7 @@ class _BodyState extends State<Body> {
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
-                              left: kDefaultPadding,
+                              left: kDefaultPadding * 2,
                               top: kDefaultPadding,
                               right: kDefaultPadding,
                             ),
@@ -197,7 +198,7 @@ class _BodyState extends State<Body> {
                           ),
                           Expanded(
                             child: ListView.builder(
-                              itemCount: 10,
+                              itemCount: snapshot.data['devices'].length,
                               itemBuilder: (context, index) {
                                 return listMachineInStore(
                                   data: snapshot.data['devices'][index],
@@ -223,6 +224,7 @@ class _BodyState extends State<Body> {
   }
 
   Widget listMachineInStore({data}) {
+    ClearCoinService clearCoinService = ClearCoinService();
     Size size = MediaQuery.of(context).size;
     double sizecircle = size.height * 0.03;
 
@@ -257,6 +259,26 @@ class _BodyState extends State<Body> {
             color: transparent,
             onTap: () {
               print("+++++++ Click event on Slidable ${data['id']}");
+
+              clearCoinService.fromDevice(data['id']).then((result) {
+                print("------> Clear Coin result : $result ");
+
+                if (result == true) {
+                  setState(() {});
+                } else {
+                  Flushbar(
+                    title: result['status'],
+                    message: result['message'],
+                    icon: Icon(
+                      Icons.info_outline,
+                      size: 28.0,
+                      color: result['color'],
+                    ),
+                    duration: Duration(seconds: 3),
+                    leftBarIndicatorColor: result['color'],
+                  )..show(context);
+                }
+              });
             },
           ),
         ),
@@ -270,7 +292,7 @@ class _BodyState extends State<Body> {
             horizontal: kDefaultPadding,
             vertical: kDefaultPadding / 2,
           ),
-          height: 120,
+          height: 130,
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
@@ -278,6 +300,7 @@ class _BodyState extends State<Body> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22),
                   color: cGradientColor1,
+                  boxShadow: [kDefaultShadow],
                 ),
                 child: Container(
                   margin: EdgeInsets.only(right: 10),

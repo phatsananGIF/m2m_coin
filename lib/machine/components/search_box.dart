@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../constants.dart';
 
-
 class SearchBox extends StatelessWidget {
   const SearchBox({
     Key key,
@@ -26,6 +25,7 @@ class SearchBox extends StatelessWidget {
       ),
       child: TextField(
         onChanged: onChanged,
+        controller: null,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
@@ -33,6 +33,16 @@ class SearchBox extends StatelessWidget {
           icon: SvgPicture.asset("assets/icons/search.svg"),
           hintText: "Search",
           hintStyle: TextStyle(color: Colors.white),
+          suffixIcon: IconButton(
+            onPressed: () {
+              print("________onPressed_____________");
+            },
+            icon: Icon(
+              Icons.clear,
+              size: 20,
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );

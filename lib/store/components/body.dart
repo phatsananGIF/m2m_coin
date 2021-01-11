@@ -34,14 +34,12 @@ class _BodyState extends State<Body> {
       if (havefilter != null) {
         print('.......havefilter มีค่า.......');
         return dataAll
-            .where((list) =>
-                (list['id'].toLowerCase().contains(havefilter.toLowerCase()) ||
-                    list['site_name']
-                        .toLowerCase()
-                        .contains(havefilter.toLowerCase()) ||
-                    list['address']
-                        .toLowerCase()
-                        .contains(havefilter.toLowerCase())))
+            .where((list) => (list['site_name']
+                    .toLowerCase()
+                    .contains(havefilter.toLowerCase()) ||
+                list['address']
+                    .toLowerCase()
+                    .contains(havefilter.toLowerCase())))
             .toList();
       } else {
         return dataAll;
@@ -250,6 +248,15 @@ class _BodyState extends State<Body> {
       child: GestureDetector(
         onTap: () {
           print(">>>>>>>>>กดดูรายละเอียดร้านค้า ${data['id']}");
+          Navigator.pushNamed(
+            context,
+            '/detailStore',
+            arguments: data['id'],
+          ).then((value) {
+            setState(() {
+              print("set state at bodyHome");
+            });
+          });
         },
         child: Padding(
           padding: EdgeInsets.only(
