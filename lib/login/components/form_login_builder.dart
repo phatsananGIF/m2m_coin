@@ -111,7 +111,7 @@ class FormLoginBuilder extends StatelessWidget {
                       if (result == true) {
                         print('result==> $result');
                         Navigator.pushNamedAndRemoveUntil(
-                            context, '/home', (Route<dynamic> route) => false);
+                            context, '/', (Route<dynamic> route) => false);
                       } else {
                         print('result==> $result');
 

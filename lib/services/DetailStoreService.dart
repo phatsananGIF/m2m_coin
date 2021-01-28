@@ -7,8 +7,8 @@ class DetailStoreService {
   //Method
   Future getDataToDetailStore(String siteID) async {
     /**-- set up POST request arguments*/
-    //String url = 'http://192.168.101.232/m2m/detail_store';
-    String url = 'http://192.168.1.242/m2m/detail_store';
+    //String url = 'http://192.168.101.168/m2m/detail_store';
+    String url = 'http://192.168.1.126/m2m/detail_store';
     
 
     Map<String, dynamic> returnStatus;

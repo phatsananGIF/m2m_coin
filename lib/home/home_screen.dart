@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:m2m_coin/components/my_bottom_nav_bar.dart';
 import 'package:m2m_coin/home/components/body.dart';
 import 'package:m2m_coin/services/AuthService.dart';
 
@@ -18,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       body: Body(),
-      bottomNavigationBar: MyBottomNavBar(),
     );
   }
 

@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
               borderRadius: BorderRadius.circular(30),
               child: FlatButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.pushNamed(context, '/');
                 },
                 child: Text(
                   "Click me",

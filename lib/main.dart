@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:m2m_coin/graph/graph_screen.dart';
 import 'package:m2m_coin/home/home_screen.dart';
+import 'package:m2m_coin/info/info_screen.dart';
 import 'package:m2m_coin/login/login_screen.dart';
 import 'package:m2m_coin/machine/machine_screen.dart';
+import 'package:m2m_coin/components/bottom_nav_bar.dart';
 import 'package:m2m_coin/services/AuthService.dart';
 import 'package:m2m_coin/store/store_screen.dart';
 
@@ -31,12 +34,14 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        '/': (context) => isLogin == false ? LoginScreen() : HomeScreen(),
+        '/': (context) => isLogin == false ? LoginScreen() : BottomNavBar(),
         '/login': (context) => LoginScreen(),
         '/home': (context) => HomeScreen(),
         '/machine': (context) => MachineScreen(),
         '/store': (context) => StoreScreen(),
         '/detailStore': (context) => DetailStoreScree(),
+        '/graph': (context) => GraphScreen(),
+        '/info': (context) => InfoScreen(),
       },
       debugShowCheckedModeBanner: false,
     );

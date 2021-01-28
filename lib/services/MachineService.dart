@@ -14,8 +14,8 @@ class MachineService {
     String userid = _prefs.getString('id');
 
     /**-- set up POST request arguments*/
-    //String url = 'http://192.168.101.232/m2m/list_devices/';
-    String url = 'http://192.168.1.242/m2m/list_devices/';
+    //String url = 'http://192.168.101.168/m2m/list_devices/';
+    String url = 'http://192.168.1.126/m2m/list_devices/';
     
 
     Map<String, dynamic> returnStatus;

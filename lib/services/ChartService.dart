@@ -4,26 +4,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants.dart';
 
-class StoreService {
+class ChartService {
   //ตัวแปล
   SharedPreferences _prefs;
 
   //Method
-  Future getSite() async {
+  Future getDataToChart(String tabSelect) async {
     _prefs = await SharedPreferences.getInstance();
     String userid = _prefs.getString('id');
 
     /**-- set up POST request arguments*/
-    //String url = 'http://192.168.101.232/m2m/Site/';
-    String url = 'http://192.168.1.126/m2m/Site/';
-    
+    //String url = 'http://192.168.101.232/m2m/Chart/';
+    String url = 'http://192.168.1.126/m2m/Chart/';
 
     Map<String, dynamic> returnStatus;
 
     /**-- make POST request*/
     http.Response response;
     try {
-      response = await http.post(url, body: {'user_id': userid});
+      response =
+          await http.post(url, body: {'user_id': userid, 'tabSelect': tabSelect});
 
       /**-- check the status code for the result*/
       if (response.statusCode == 200) {
